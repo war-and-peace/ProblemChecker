@@ -1,0 +1,6 @@
+# IDE specific
+.vscode
+
+# C++ specific
+*.gch
+*.out

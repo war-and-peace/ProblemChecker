@@ -4,3 +4,10 @@
 # C++ specific
 *.gch
 *.out
+
+# clangd configuration files
+.clangd/
+compile_commands.json
+
+# Bulid files
+build/

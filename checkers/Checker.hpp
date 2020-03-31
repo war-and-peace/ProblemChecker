@@ -1,34 +1,33 @@
-#include <string>
+#ifndef CHECKER_HEADER
+#define CHECKER_HEADER
+
 #include <fstream>
 #include <ios>
 
-namespace checker{
+namespace checker {
 
-    class Checker{
-    private:
-        /* data */
+class Checker {
+   private:
+    /* data */
 
-    public:
-        // Checker(std::string& output_file_name, std::string& validation_file_name): 
-        //     output_file_name(output_file_name), validation_file_name(validation_file_name){};
+   public:
+    virtual bool check() = 0;
+};
 
-        virtual bool check() = 0;
+class FileErrorException : public std::exception {
+   private:
+    /* data */
+   public:
+    explicit FileErrorException(const std::string &file_name) {
+        this->message = "Error opening the file: " + file_name;
     };
+    virtual ~FileErrorException() throw(){};
+    virtual const char *what() const throw() { return this->message.c_str(); }
 
-    class FileErrorException : public std::exception{
-    private:
-        /* data */
-    public:
-        explicit FileErrorException(const std::string& file_name){
-            this->message = "Error opening the file: " + file_name;
-        };
-        virtual ~FileErrorException() throw();
-        virtual const char* what() const throw(){
-            return this->message.c_str();
-        }
-    
-    protected:
-        std::string message;
-    };
+   protected:
+    std::string message;
+};
 
-}
+}  // namespace checker
+
+#endif /* CHECKER_HEADER */

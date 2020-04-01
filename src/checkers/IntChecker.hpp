@@ -1,9 +1,6 @@
 #ifndef INTCHECKER_HEADER
 #define INTCHECKER_HEADER
 
-#include <iostream>
-#include <string_view>
-
 #include "Checker.hpp"
 
 namespace checker {

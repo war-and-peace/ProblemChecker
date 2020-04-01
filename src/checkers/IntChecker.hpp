@@ -10,11 +10,9 @@ namespace checker {
 
 class IntChecker : public Checker {
    private:
-    std::string output_file_name;
-    std::string validation_file_name;
-
    public:
-    IntChecker(std::string_view output_file_name,
+    IntChecker(std::string_view input_file_path,
+               std::string_view output_file_name,
                std::string_view validation_file_name);
     ~IntChecker() = default;
     bool check();
@@ -22,21 +20,18 @@ class IntChecker : public Checker {
 
 }  // namespace checker
 
-checker::IntChecker::IntChecker(std::string_view output_file_name,
-                                std::string_view validation_file_name)
-    : output_file_name(output_file_name),
-      validation_file_name(validation_file_name) {
-    std::ifstream file1(this->output_file_name), file2(this->validation_file_name);
-
-    if (!file1.good() || !file2.good()) {
-        throw checker::FileErrorException(static_cast<std::string>(output_file_name));
-    }
-};
+checker::IntChecker::IntChecker(std::string_view input_file_path,
+                                std::string_view output_file_path,
+                                std::string_view validation_file_path)
+    : checker::Checker(input_file_path, output_file_path, validation_file_path) {};
 
 bool checker::IntChecker::check() {
     std::ifstream out1, out2;
-    out1.open(output_file_name);
-    out2.open(validation_file_name);
+    out1.open(this->output_file_path);
+    out2.open(this->validation_file_path);
+    if (!out1.good() || !out2.good()) {
+        throw checker::FileErrorException(static_cast<std::string>(output_file_path));
+    }
     int source, target;
     if (!(out1 >> source)) {
         return false;

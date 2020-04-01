@@ -1,6 +1,7 @@
 #ifndef CHECKER_HEADER
 #define CHECKER_HEADER
 
+#include <string_view>
 #include <fstream>
 #include <ios>
 

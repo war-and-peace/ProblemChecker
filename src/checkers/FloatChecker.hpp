@@ -1,35 +1,35 @@
-#ifndef INTCHECKER_HEADER
-#define INTCHECKER_HEADER
+#ifndef FLOATCHECKER_HEADER
+#define FLOATCHECKER_HEADER
 
 #include "Checker.hpp"
 
 namespace checker {
 
-class IntChecker : public Checker {
+class FloatChecker : public Checker {
    private:
    public:
-    IntChecker(std::string_view input_file_path,
+    FloatChecker(std::string_view input_file_path,
                std::string_view output_file_name,
                std::string_view validation_file_name);
-    ~IntChecker() = default;
+    ~FloatChecker() = default;
     bool check();
 };
 
 }  // namespace checker
 
-checker::IntChecker::IntChecker(std::string_view input_file_path,
+checker::FloatChecker::FloatChecker(std::string_view input_file_path,
                                 std::string_view output_file_path,
                                 std::string_view validation_file_path)
     : checker::Checker(input_file_path, output_file_path, validation_file_path) {};
 
-bool checker::IntChecker::check() {
+bool checker::FloatChecker::check() {
     std::ifstream out1, out2;
     out1.open(this->output_file_path);
     out2.open(this->validation_file_path);
     if (!out1.good() || !out2.good()) {
         throw checker::FileErrorException(static_cast<std::string>(output_file_path));
     }
-    int source, target;
+    double source, target;
     if (!(out1 >> source)) {
         return false;
     }
@@ -45,4 +45,4 @@ bool checker::IntChecker::check() {
     }
 }
 
-#endif /* INTCHECKER_HEADER */
+#endif /* FLOATCHECKER_HEADER */

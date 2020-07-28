@@ -1,6 +1,6 @@
 # IDE specific
-.vscode
-.idea
+.vscode/
+.idea/
 
 # C++ specific
 *.gch

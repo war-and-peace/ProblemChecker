@@ -1,5 +1,5 @@
 # IDE specific
-.vscode
+.vscode/
 .idea/
 
 # C++ specific

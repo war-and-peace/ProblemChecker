@@ -1,5 +1,6 @@
 # IDE specific
 .vscode
+.idea
 
 # C++ specific
 *.gch
@@ -12,3 +13,4 @@ compile_commands.json
 # Bulid files
 build/
 cmake-build-debug/
+cmake-build-release/
